@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import useBreedList from '../hooks/useBreedList'
 import Pet from './Pet'
 const ANIMALS = ['bird', 'cat', 'dog', 'rabbit', 'reptile']
 
@@ -7,7 +8,7 @@ const SearchParams = () => {
   const [animal, setAnimal] = useState('')
   const [breed, setBreed] = useState('')
   const [pets, setPets] = useState([])
-  const breeds = []
+  const [breeds] = useBreedList(animal)
 
   const requestPets = async () => {
     const res = await fetch(`http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`)
